@@ -7,12 +7,12 @@ package com.jconner.driver;
 
 import com.jconner.poloapi.PoloAPI;
 
-public class Main {
+public class Driver {
 
     public static void main(String[] args) {
 
         PoloAPI polo = new PoloAPI();
 
-        System.out.println(polo.getPubAPI().returnLoanOrders("BTC"));
+        //System.out.println(polo.getPubAPI().returnLoanOrders("BTC"));
     }
 }

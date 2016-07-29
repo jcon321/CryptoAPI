@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
@@ -20,6 +22,7 @@ import net.minidev.json.JSONValue;
  */
 public class PublicAPI {
 
+    private static final Logger LOGGER = Logger.getLogger(PublicAPI.class.getName());
     String basePublicURL = " https://poloniex.com/public?command=";
 
     public PublicAPI() {
@@ -43,7 +46,7 @@ public class PublicAPI {
 
             result = (JSONObject) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -64,7 +67,7 @@ public class PublicAPI {
 
             result = (JSONObject) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -86,7 +89,7 @@ public class PublicAPI {
 
             result = (JSONObject) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -108,7 +111,7 @@ public class PublicAPI {
 
             result = (JSONArray) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -130,7 +133,7 @@ public class PublicAPI {
 
             result = (JSONArray) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -153,7 +156,7 @@ public class PublicAPI {
 
             result = (JSONArray) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -174,7 +177,7 @@ public class PublicAPI {
 
             result = (JSONObject) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);
@@ -195,7 +198,7 @@ public class PublicAPI {
 
             result = (JSONObject) JSONValue.parse(isAsString);
         } catch (IOException e) {
-            System.err.println(e.toString());
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
         }
 
         return (result);

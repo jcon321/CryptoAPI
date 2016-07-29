@@ -5,38 +5,60 @@
  */
 package com.jconner.poloapi;
 
+import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.websocket.ClientEndpoint;
+import javax.websocket.ContainerProvider;
+import javax.websocket.DeploymentException;
+import javax.websocket.OnMessage;
+import javax.websocket.Session;
+import javax.websocket.WebSocketContainer;
 
 /**
  *
  * @author jconner
  */
+@ClientEndpoint
 public class PushAPI {
 
+    private static final Logger LOGGER = Logger.getLogger(PushAPI.class.getName());
+    private final String basePushURL = "wss://api.poloniex.com";
+    private final static Object waitLock = new Object();
+
+    @OnMessage
+    public void onMessage(String message) {
+        System.out.println("Received msg: " + message);
+    }
+
+    private static void wait4TerminateSignal() {
+        synchronized (waitLock) {
+            try {
+                waitLock.wait();
+            } catch (InterruptedException e) {
+                LOGGER.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+    }
+
     public PushAPI() {
+        WebSocketContainer container;
+        Session session = null;
         try {
-            // open websocket
-            final WebsocketClientEndpoint clientEndPoint = new WebsocketClientEndpoint(new URI("wss://real.okcoin.cn:10440/websocket/okcoinapi"));
-
-            // add listener
-            clientEndPoint.addMessageHandler(new WebsocketClientEndpoint.MessageHandler() {
-                @Override
-                public void handleMessage(String message) {
-                    System.out.println(message);
+            container = ContainerProvider.getWebSocketContainer();
+            session = container.connectToServer(PushAPI.class, URI.create(basePushURL));
+            wait4TerminateSignal();
+        } catch (DeploymentException | IOException e) {
+            LOGGER.log(Level.SEVERE, "Exception: ", e);
+        } finally {
+            if (session != null) {
+                try {
+                    session.close();
+                } catch (IOException e) {
+                    LOGGER.log(Level.SEVERE, "Exception: ", e);
                 }
-            });
-
-            // send message to websocket
-            clientEndPoint.sendMessage("{'event':'addChannel','channel':'ok_btccny_ticker'}");
-
-            // wait 5 seconds for messages from websocket
-            Thread.sleep(5000);
-
-        } catch (InterruptedException ex) {
-            System.err.println("InterruptedException exception: " + ex.getMessage());
-        } catch (URISyntaxException ex) {
-            System.err.println("URISyntaxException exception: " + ex.getMessage());
+            }
         }
     }
 }
