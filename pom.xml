@@ -10,29 +10,13 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+    <name>CyrptoAPI</name>
     <dependencies>
-        
-        <!-- https://mvnrepository.com/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client -->
-        <dependency>
-            <groupId>org.glassfish.tyrus.bundles</groupId>
-            <artifactId>tyrus-standalone-client</artifactId>
-            <version>1.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-client-api</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        
         <!-- https://mvnrepository.com/artifact/net.minidev/json-smart -->
         <dependency>
             <groupId>net.minidev</groupId>
             <artifactId>json-smart</artifactId>
             <version>1.1.1</version>
         </dependency>
-
     </dependencies>
-    <name>CyrptoAPI</name>
 </project>

@@ -12,7 +12,6 @@ package com.jconner.poloapi;
 public class PoloAPI {
 
     private final PublicAPI pubAPI = new PublicAPI();
-    private final PushAPI pushAPI = new PushAPI();
 
     public PoloAPI() {
 
@@ -20,10 +19,6 @@ public class PoloAPI {
 
     public PublicAPI getPubAPI() {
         return pubAPI;
-    }
-
-    public PushAPI getPushAPI() {
-        return pushAPI;
     }
 
 }

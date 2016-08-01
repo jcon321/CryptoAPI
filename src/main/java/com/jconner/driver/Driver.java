@@ -13,6 +13,6 @@ public class Driver {
 
         PoloAPI polo = new PoloAPI();
 
-        //System.out.println(polo.getPubAPI().returnLoanOrders("BTC"));
+        System.out.println(polo.getPubAPI().returnLoanOrders("BTC"));
     }
 }
