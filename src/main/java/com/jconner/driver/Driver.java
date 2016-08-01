@@ -6,6 +6,8 @@
 package com.jconner.driver;
 
 import com.jconner.poloapi.PoloAPI;
+import com.jconner.poloapi.PublicTicker;
+import java.util.List;
 
 public class Driver {
 
@@ -13,6 +15,8 @@ public class Driver {
 
         PoloAPI polo = new PoloAPI();
 
-        System.out.println(polo.getPubAPI().returnTicker());
+        List<PublicTicker> ticker = polo.getPubAPI().returnTicker();
+        System.out.println(polo.getPubAPI().return24Volume().toJSONString());
+        System.out.println("");
     }
 }
