@@ -8,15 +8,29 @@ package com.jconner.driver;
 import com.jconner.poloapi.PoloAPI;
 import com.jconner.poloapi.PublicTicker;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Driver {
 
+    private static final Logger LOGGER = Logger.getLogger(Driver.class.getName());
+    
     public static void main(String[] args) {
 
         PoloAPI polo = new PoloAPI();
 
-        List<PublicTicker> ticker = polo.getPubAPI().returnTicker();
-        System.out.println(polo.getPubAPI().return24Volume().toJSONString());
-        System.out.println("");
+        while (true) {
+            List<PublicTicker> ticker = polo.getPubAPI().returnTicker();
+
+            for (PublicTicker ticker1 : ticker) {
+                if (ticker1.getMarketName().equals("BTC_ETC")) {
+                    LOGGER.log(Level.INFO, "\n{0}", ticker1.toString());
+                }
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+        }
     }
 }

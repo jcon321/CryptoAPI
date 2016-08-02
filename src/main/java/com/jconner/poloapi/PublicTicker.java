@@ -28,6 +28,32 @@ public class PublicTicker {
         
     }
 
+    @Override
+    public String toString() {
+        
+        return String.format(""
+                + "%s%24s\n"
+                + "%s%24s\n"
+                + "%s%23s\n"
+                + "%s%22s\n"
+                + "%s%27s\n"
+                + "%s%24s\n"
+                + "%s%25s\n"
+                + "%s%24s\n"
+                + "%s%23s\n"
+                + "%s%26s\n", 
+                "Market Name:", marketName, 
+                "24 Hour Low:", low24hr,
+                "24 Hour High:", high24hr,
+                "Current Price:", last,
+                "% Change:", percentChange,
+                "Highest Bid:", highestBid,
+                "Lowest Ask:", lowestAsk,
+                "Base Volume:", baseVolume,
+                "Quote Volume:", quoteVolume,
+                "Is Frozen:", isFrozen);
+    }
+    
     public String getMarketName() {
         return marketName;
     }
