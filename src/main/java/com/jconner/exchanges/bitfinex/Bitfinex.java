@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jconner.poloapi;
+package com.jconner.exchanges.bitfinex;
+
 
 /**
  *
  * @author jconner
  */
-public class PoloAPI {
+public class Bitfinex {
 
-    private final PublicAPI pubAPI = new PublicAPI();
+    private final BitfinexPubAPI pubAPI = new BitfinexPubAPI();
 
-    public PoloAPI() {
+    public Bitfinex() {
 
     }
 
-    public PublicAPI getPubAPI() {
+    public BitfinexPubAPI getPubAPI() {
         return pubAPI;
     }
 

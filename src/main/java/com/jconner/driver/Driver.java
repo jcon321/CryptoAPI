@@ -5,8 +5,10 @@
  */
 package com.jconner.driver;
 
-import com.jconner.poloapi.PoloAPI;
-import com.jconner.poloapi.PublicTicker;
+import com.jconner.exchanges.bitfinex.Bitfinex;
+import com.jconner.exchanges.bitfinex.BitfinexPubTicker;
+import com.jconner.exchanges.poloniex.Poloniex;
+import com.jconner.exchanges.poloniex.PoloPubTicker;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,16 +19,25 @@ public class Driver {
     
     public static void main(String[] args) {
 
-        PoloAPI polo = new PoloAPI();
+        Poloniex polo = new Poloniex();
+        Bitfinex bitfinex = new Bitfinex();
 
         while (true) {
-            List<PublicTicker> ticker = polo.getPubAPI().returnTicker();
-
-            for (PublicTicker ticker1 : ticker) {
-                if (ticker1.getMarketName().equals("BTC_ETC")) {
+            
+            // Poloniex
+            LOGGER.log(Level.INFO, "\n{0}", "Poloniex Public Ticker");
+            List<PoloPubTicker> poloTicker = polo.getPubAPI().returnTicker();
+            for (PoloPubTicker ticker1 : poloTicker) {
+                if (ticker1.getMarketName().equals("BTC_ETH")) {
                     LOGGER.log(Level.INFO, "\n{0}", ticker1.toString());
                 }
             }
+            
+            // Bitfinex
+            BitfinexPubTicker bitfinexTicker = bitfinex.getPubAPI().returnTicker("ethbtc");
+            LOGGER.log(Level.INFO, "\n{0}", "Bitfinex Public Ticker");
+            LOGGER.log(Level.INFO, "\n{0}", bitfinexTicker.toString());
+            
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

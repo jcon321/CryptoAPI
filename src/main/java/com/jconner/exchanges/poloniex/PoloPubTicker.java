@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-package com.jconner.poloapi;
+package com.jconner.exchanges.poloniex;
 
 /**
  *
  * @author jconner
  */
-public class PublicTicker {
+public class PoloPubTicker {
     
     private String marketName;
     private Integer id;
@@ -24,7 +24,7 @@ public class PublicTicker {
     private Double quoteVolume;
     private Double baseVolume;
     
-    public PublicTicker() {
+    public PoloPubTicker() {
         
     }
 

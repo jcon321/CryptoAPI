@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jconner.poloapi;
+package com.jconner.exchanges.poloniex;
 
 import com.jconner.utils.StringUtilities;
 import java.io.IOException;
@@ -25,20 +25,20 @@ import org.codehaus.jackson.map.ObjectMapper;
  *
  * @author jconner
  */
-public class PublicAPI {
+public class PoloPubAPI {
 
-    private static final Logger LOGGER = Logger.getLogger(PublicAPI.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PoloPubAPI.class.getName());
     String basePublicURL = " https://poloniex.com/public?command=";
 
-    public PublicAPI() {
+    public PoloPubAPI() {
 
     }
 
     /*
      Returns the ticker for all markets.
      */
-    public List<PublicTicker> returnTicker() {
-        List<PublicTicker> result = new ArrayList<>();
+    public List<PoloPubTicker> returnTicker() {
+        List<PoloPubTicker> result = new ArrayList<>();
         try {
             URL url = new URL(basePublicURL + "returnTicker");
             URLConnection conn = url.openConnection();
@@ -51,7 +51,7 @@ public class PublicAPI {
             Iterator it = map.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry) it.next();
-                PublicTicker single = mapper.convertValue(pair.getValue(), PublicTicker.class);
+                PoloPubTicker single = mapper.convertValue(pair.getValue(), PoloPubTicker.class);
                 single.setMarketName(pair.getKey().toString());
                 result.add(single);
             }
